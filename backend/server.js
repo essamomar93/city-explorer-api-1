@@ -9,40 +9,32 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
+const axios = require("axios");
+
 const weatherData = require("./data/weather.json");
 const PORT = process.env.PORT;
 
 console.log(weatherData);
 class Forecast {
-  constructor(date, description, lat, lon) {
+  constructor(date, description) {
     this.date = date;
     this.description = description;
 
   }
 }
 
-app.get("/witherData", (req, res) => {
-  const searchQuery = req.query.city_name;
-  let lat = Number(req.query.lat);
-  let lon = Number(req.query.lon);
-  
-if (lat&&lon||searchQuery) {
-  const checkArray = weatherData.find((item) => {
-    return item.city_name.toLowerCase() === searchQuery.toLowerCase()|| item.lat===lat&&item.lon===lon;
-  });
-
-  if (checkArray) {
-    let newArray = checkArray.data.map((item) => {
-      return new Forecast(item.datetime, item.weather.description);
-    });
-    res.json(newArray);
-  } else {
-    res.status(404).send("city dose not exist")
-  }
-}else {
-  res.status(400).send("pleas right city name")
+let handleWeather = async (req, res) => {
+  let city_name = req.query.city;
+  let lat = req.query.lat;
+  let lon = req.query.lon;
+  let url = `https://api.weatherbit.io/v2.0/forecast/daily?city_name${city_name}&lat=${lat}&lon=${lon}&key=${process.env.WEATHERBIT_API_KEY}`;
+  let axios = await axios.get(url);
+  let weatherData = axios.data;
+  let cleanedData = weatherData.data.map(item => {
+    return new Forecast(item.datetime, item.weather.description);
+  })
+  res.status(200).json(cleanedData);
 }
-  
+app.get('/weather', handleWeather)
 
-});
 app.listen(PORT, () => { });
