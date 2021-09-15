@@ -1,5 +1,6 @@
 "use strict";
 const Forecast=require("../models/Weather.model")
+const axios = require("axios");
 
 const handleWeather = async (req, res) => {
     try {
