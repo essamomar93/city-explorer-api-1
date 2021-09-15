@@ -4,6 +4,7 @@
 
 **Version**: 1.0.0 
 2.0.0
+3.0.0
 
 ## Overview
 As a user of City Explorer, I want to see weather info for the city I searched, so that I know how to pack for an upcoming trip.
@@ -17,6 +18,8 @@ express, cors,dotenv, backend
 ## Change Log
 
 14-09-2021 5:00pm - Application now has a fully-functional express server, with a GET route for the location resource for lab07 
+
+15-09-2021 9.45pm - Application now has a fully-functional express server, with a GET route for the location resource for lab09
 
 lab08 pending
 ## Credit and Collaborations
@@ -33,7 +36,7 @@ Finish time: 11
 
 Actual time needed to complete: 8
 ant stil not finish 
-
+=============================
 Name of feature: city explorer api lab08
 
 Estimate of time needed to complete: 5
@@ -43,3 +46,15 @@ Start time: 6
 Finish time: 10
 
 Actual time needed to complete: 4 and not finish 
+
+==================================
+
+Name of feature: city explorer api lab09
+
+Estimate of time needed to complete: 1
+
+Start time: 9
+
+Finish time: 9.45
+
+Actual time needed to complete: 45 min .
