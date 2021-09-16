@@ -10,10 +10,10 @@ const handleMovie = async (req, res) => {
     let axiosRes = await axios.get(url);
     let movieData = axiosRes.data;
     let cleanedData = movieData.results.map(item => {
-      if (item.poster_path !== "null") {
-        return new Moviecast(item.release_date, item.title, item.overview, item.vote_average, item.vote_count, item.poster_path);
 
-      }
+      return new Moviecast(item.release_date, item.title, item.overview, item.vote_average, item.vote_count, item.poster_path);
+
+
     })
     res.json(cleanedData);
   } catch (error) {
